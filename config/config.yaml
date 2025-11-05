@@ -1,0 +1,70 @@
+project_name: "Flipkart_Customer_Sentiment_Analysis"
+artifact_dir: "artifacts"
+
+# ------------------------------
+# Stage 01: Data Ingestion
+# ------------------------------
+data_ingestion:
+  raw_data_path: "data/raw/flipkart_dataset.csv"
+  processed_data_path: "data/processed/ingested_dataset.csv"
+  report_file: "artifacts/reports/data_ingestion_report.json"
+
+# ------------------------------
+# Stage 02: Data Validation
+# ------------------------------
+data_validation:
+  schema_file: "config/schema.yaml"
+  report_dir: "artifacts/reports"
+  expected_columns:
+    - product_name
+    - product_price
+    - Rate
+    - Review
+    - Summary
+    - Sentiment
+
+# ------------------------------
+# Stage 03: Data Transformation / Preprocessing
+# ------------------------------
+data_transformation:
+  preprocessor_path: "artifacts/preprocessor.pkl"
+  transformed_data_path: "data/transformed/transformed_dataset.csv"
+  report_file: "artifacts/reports/data_transformation_report.json"
+
+# ------------------------------
+# Stage 04: Model Training
+# ------------------------------
+model_trainer:
+  model_dir: "artifacts/models/"
+  model_name: "sentiment_model.pkl"
+  model_report: "artifacts/reports/model_training_report.json"
+
+# ------------------------------
+# Stage 05: Model Evaluation
+# ------------------------------
+model_evaluation:
+  report_path: "artifacts/reports/model_evaluation_report.json"
+  confusion_matrix_path: "artifacts/reports/confusion_matrix.png"
+
+# ------------------------------
+# Stage 06: Prediction / Serving
+# ------------------------------
+prediction_service:
+  saved_model_path: "artifacts/models/sentiment_model.pkl"
+
+# ------------------------------
+# MLflow Tracking
+# ------------------------------
+mlflow:
+  experiment_name: "flipkart_sentiment_experiment"
+  tracking_uri: ""   # left empty for local MLflow (./mlruns)
+  run_name: "flipkart_sentiment_pipeline_run"
+
+# ------------------------------
+# Transformer Settings
+# ------------------------------
+transformer:
+  pretrained_model_name: "distilbert-base-uncased"
+  tokenizer_max_length: 256
+  use_gpu: true
+  cache_dir: "artifacts/transformer_cache/"
