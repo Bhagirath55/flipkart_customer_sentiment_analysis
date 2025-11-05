@@ -73,7 +73,7 @@ jobs:
           name: all_artifacts
           path: |
             artifacts/best_model/
-            artifacts/model_evaluation_report.json
+            artifacts/best_model_evaluation_report.json
             logs/
             reports/
 
@@ -86,7 +86,6 @@ jobs:
 
           git add artifacts/best_model/
           git add artifacts/best_model_evaluation_report.json || true
-          git add artifacts/confusion_matrix.png || true
           git add logs/ || true
           git add reports/ || true
 
