@@ -27,35 +27,42 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      # ---------- Set MLflow / DagsHub environment ----------
+      - name: Set MLflow and DagsHub Env
+        run: |
+          echo "MLFLOW_TRACKING_URI=${{ secrets.MLFLOW_TRACKING_URI }}" >> $GITHUB_ENV
+          echo "MLFLOW_TRACKING_USERNAME=${{ secrets.MLFLOW_TRACKING_USERNAME }}" >> $GITHUB_ENV
+          echo "DAGSHUB_TOKEN=${{ secrets.DAGSHUB_TOKEN }}" >> $GITHUB_ENV
+
       # ---------- Stage 1 ----------
       - name: Run Stage 1 - Data Ingestion
         env:
-          MLFLOW_TRACKING_USERNAME: ${{ secrets.MLFLOW_TRACKING_USERNAME }}
           MLFLOW_TRACKING_URI: ${{ secrets.MLFLOW_TRACKING_URI }}
+          MLFLOW_TRACKING_USERNAME: ${{ secrets.MLFLOW_TRACKING_USERNAME }}
           DAGSHUB_TOKEN: ${{ secrets.DAGSHUB_TOKEN }}
         run: python -m src.stage_01_data_ingestion
 
       # ---------- Stage 2 ----------
       - name: Run Stage 2 - Data Validation
         env:
-          MLFLOW_TRACKING_USERNAME: ${{ secrets.MLFLOW_TRACKING_USERNAME }}
           MLFLOW_TRACKING_URI: ${{ secrets.MLFLOW_TRACKING_URI }}
+          MLFLOW_TRACKING_USERNAME: ${{ secrets.MLFLOW_TRACKING_USERNAME }}
           DAGSHUB_TOKEN: ${{ secrets.DAGSHUB_TOKEN }}
         run: python -m src.stage_02_data_validation
 
       # ---------- Stage 3 ----------
       - name: Run Stage 3 - Data Transformation
         env:
-          MLFLOW_TRACKING_USERNAME: ${{ secrets.MLFLOW_TRACKING_USERNAME }}
           MLFLOW_TRACKING_URI: ${{ secrets.MLFLOW_TRACKING_URI }}
+          MLFLOW_TRACKING_USERNAME: ${{ secrets.MLFLOW_TRACKING_USERNAME }}
           DAGSHUB_TOKEN: ${{ secrets.DAGSHUB_TOKEN }}
         run: python -m src.stage_03_data_transformation
 
       # ---------- Stage 4 ----------
       - name: Run Stage 4 - Model Training
         env:
-          MLFLOW_TRACKING_USERNAME: ${{ secrets.MLFLOW_TRACKING_USERNAME }}
           MLFLOW_TRACKING_URI: ${{ secrets.MLFLOW_TRACKING_URI }}
+          MLFLOW_TRACKING_USERNAME: ${{ secrets.MLFLOW_TRACKING_USERNAME }}
           DAGSHUB_TOKEN: ${{ secrets.DAGSHUB_TOKEN }}
         run: python -m src.stage_04_model_trainer
 
@@ -66,7 +73,7 @@ jobs:
           name: all_artifacts
           path: |
             artifacts/best_model/
-            artifacts/best_model_evaluation_report.json
+            artifacts/model_evaluation_report.json
             logs/
             reports/
 
@@ -79,6 +86,7 @@ jobs:
 
           git add artifacts/best_model/
           git add artifacts/best_model_evaluation_report.json || true
+          git add artifacts/confusion_matrix.png || true
           git add logs/ || true
           git add reports/ || true
 
