@@ -102,6 +102,8 @@ class ModelTrainer:
 
             rf_model_path = os.path.join("models", "random_forest_model.pkl")
             tfidf_path = os.path.join("models", "tfidf_vectorizer.pkl")
+            # ensure directory exists
+            os.makedirs(os.path.dirname(rf_model_path), exist_ok=True)
             joblib.dump(clf, rf_model_path)
             joblib.dump(vectorizer, tfidf_path)
 
@@ -179,6 +181,7 @@ class ModelTrainer:
             report = classification_report(y_test, preds, output_dict=True)
 
             bert_path = os.path.join("models", "distilbert_model")
+            os.makedirs(bert_path, exist_ok=True)  # create directory if it doesn't exist
             model.save_pretrained(bert_path)
             tokenizer.save_pretrained(bert_path)
 
