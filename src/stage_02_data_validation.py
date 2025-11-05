@@ -1,3 +1,4 @@
+#stage_02_data_validation.py
 import os
 import sys
 import json
@@ -8,7 +9,6 @@ from datetime import datetime
 from src.logger import setup_logger
 from src.exception import CustomException
 from src.utils import read_yaml
-
 
 class DataValidation:
     """Stage 02 — Validates dataset integrity before preprocessing."""

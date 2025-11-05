@@ -29,16 +29,9 @@ Thumbs.db
 # ==========================
 # Artifacts, models, logs
 # ==========================
-artifacts/logs/
-artifacts/reports/
-artifacts/best_model_evaluation_report.json
 models/
 mlruns/
-*.pt
-*.bin
-*.pkl
-*.joblib
-*.safetensors
+artifacts/confusion_matrix.png
 
 # ==========================
 # Data generated during pipeline
@@ -53,14 +46,10 @@ data/cache/
 *.gz
 
 # Keep only raw data
-!data/raw/
-data/raw/*.tmp
-data/raw/*.zip
 
 # ==========================
 # Reports and figures
 # ==========================
-reports/
 notebooks/.ipynb_checkpoints/
 *.png
 *.jpg
@@ -90,3 +79,8 @@ credentials.json
 .cache/
 coverage/
 htmlcov/
+results/
+commands.txt
+all.txt
+alls.txt
+DagsHub + GitHub + MLflow Setup pipeline.txt
