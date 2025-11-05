@@ -1,0 +1,92 @@
+# ==========================
+# Python basics
+# ==========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+*.log
+*.tmp
+*.swp
+
+# ==========================
+# Virtual environments
+# ==========================
+.venv/
+venv/
+env/
+
+# ==========================
+# IDE / OS files
+# ==========================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ==========================
+# Artifacts, models, logs
+# ==========================
+artifacts/logs/
+artifacts/reports/
+artifacts/best_model_evaluation_report.json
+models/
+mlruns/
+*.pt
+*.bin
+*.pkl
+*.joblib
+*.safetensors
+
+# ==========================
+# Data generated during pipeline
+# ==========================
+data/processed/
+data/transformed/
+data/interim/
+data/tmp/
+data/cache/
+*.csv~
+*.zip
+*.gz
+
+# Keep only raw data
+!data/raw/
+data/raw/*.tmp
+data/raw/*.zip
+
+# ==========================
+# Reports and figures
+# ==========================
+reports/
+notebooks/.ipynb_checkpoints/
+*.png
+*.jpg
+*.jpeg
+
+# ==========================
+# Miscellaneous
+# ==========================
+*.bak
+*.old
+*.orig
+*.jsonl
+
+# ==========================
+# Environment and secrets
+# ==========================
+.env
+.env.*
+secrets.yaml
+token.json
+credentials.json
+
+# ==========================
+# Pytest / cache
+# ==========================
+.pytest_cache/
+.cache/
+coverage/
+htmlcov/
