@@ -57,7 +57,7 @@ prediction_service:
 # ------------------------------
 mlflow:
   experiment_name: "flipkart_sentiment_experiment"
-  tracking_uri: ""   # left empty for local MLflow (./mlruns)
+  tracking_uri: ${MLFLOW_TRACKING_URI}   
   run_name: "flipkart_sentiment_pipeline_run"
 
 # ------------------------------
