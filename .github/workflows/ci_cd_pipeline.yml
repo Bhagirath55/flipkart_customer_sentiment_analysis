@@ -84,7 +84,9 @@ jobs:
           git config --global user.name "Bhagirath55"
           git config --global user.email "21fycs.a20.bhagirath@gmail.com"
 
-          git add artifacts/best_model/
+          # Safely add artifacts if they exist
+          git add artifacts/best_model.pkl || true
+          git add artifacts/best_model/ || true
           git add artifacts/best_model_evaluation_report.json || true
           git add logs/ || true
           git add reports/ || true
@@ -95,3 +97,4 @@ jobs:
             git commit -m "Update artifacts, logs, and best model [Automated CI/CD]"
             git pull --rebase origin master
             git push origin master
+          fi
