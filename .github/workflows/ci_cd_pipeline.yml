@@ -1,5 +1,8 @@
 name: CI-CD Pipeline
 
+permissions:
+  contents: write
+
 on:
   push:
     paths:
@@ -72,21 +75,19 @@ jobs:
         with:
           name: all_artifacts
           path: |
-            artifacts/best_model/
+            artifacts/best_model.pkl
             artifacts/best_model_evaluation_report.json
             logs/
             reports/
 
-      # ---------- Auto-commit artifacts ----------
+      # ---------- Commit and Push Updated Artifacts ----------
       - name: Commit and Push Updated Artifacts
         if: success()
         run: |
           git config --global user.name "Bhagirath55"
           git config --global user.email "21fycs.a20.bhagirath@gmail.com"
 
-          # Safely add artifacts if they exist
           git add artifacts/best_model.pkl || true
-          git add artifacts/best_model/ || true
           git add artifacts/best_model_evaluation_report.json || true
           git add logs/ || true
           git add reports/ || true
